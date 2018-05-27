@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            width: 100%;
+            opacity: 0;
+            transition: all .5s;
+        }
+        img.act{
+            opacity: 1;
+        }
+    </style>
+
+</head>
+<body>
+<img src="" data-src="img/3.jpg" class="laz">
+<img src="" data-src="img/4.jpg" class="laz">
+<img src="" data-src="img/5.jpg" class="laz">
+<img src="" data-src="img/7.jpg" class="laz">
+<img src="" data-src="img/8.jpg" class="laz">
+<img src="" data-src="img/9.jpg" class="laz">
+<img src="" data-src="img/10.jpg" class="laz">
+<img src="" data-src="img/11.jpg" class="laz">
+<img src="" data-src="img/15.jpg" class="laz">
+<img src="" data-src="img/17.jpg" class="laz">
+
+<script src="jquery.min.js"></script>
+<script>
+    $.laz=function (s) {
+        var n = 0,leng=s.length;
+        laz();
+        $(window).scroll(laz);
+        function laz() {
+            var seeHeight=$(window).height();
+            var scrollHeight=$(window).scrollTop();
+            console.log(seeHeight);
+            for(var i = n; i < leng; i++) {
+                var imgHeight=s.eq(i).offset().top;
+                if(imgHeight<seeHeight+scrollHeight) {
+                    if(s.eq(i).attr("src")=='') {
+                        var newsrc=s.eq(i).attr("data-src");
+                        s.eq(i).attr('src',newsrc).addClass('act');
+                        n = i + 1;
+                    }
+                }
+            }
+        }
+    };
+    $.laz($('img.laz'));
+</script>
+</body>
+</html>
